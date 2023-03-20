@@ -1,3 +1,3 @@
 #!/usr/bin/python3
 def magic_string(n):
-        print(f"BestSchool".split(","))
+        return f"BestSchool".split(",")
