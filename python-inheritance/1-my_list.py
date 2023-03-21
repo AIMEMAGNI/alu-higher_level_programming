@@ -9,4 +9,4 @@ class MyList(list):
         """ A function that prints sorted list items"""
         temp_list = self[:]
         temp_list.sort()
-        print(temp_list)
+        print("{}".format(temp_list))
