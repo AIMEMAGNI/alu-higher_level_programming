@@ -4,4 +4,4 @@
 
 def is_same_class(obj, a_class):
     ''' Checking if the object belongs to a class'''
-    return issubclass(obj, a_class)
+    return isinstance(obj, cls)
