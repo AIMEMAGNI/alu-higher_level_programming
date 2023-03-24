@@ -2,7 +2,7 @@
 """Defines a text file-reading function."""
 
 
-def write_file(filename=""):
+def write_file(filename="", text=""):
     """Print the contents of a UTF8 text file to stdout."""
     with open(filename, encoding="utf-8") as file:
-        print(file.write(), end="")
+        return file.write(text)
