@@ -3,7 +3,7 @@
 # and then save them to a file
 """
     script that adds all arguments to a Python list,
-    and save them to a file
+    and save them to a file.
 """
 
 import sys
