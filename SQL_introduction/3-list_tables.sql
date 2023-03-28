@@ -1,2 +1,2 @@
---command to list tables
+--list tables
 SHOW TABLES;
