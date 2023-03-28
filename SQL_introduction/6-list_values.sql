@@ -1,2 +1,2 @@
 -- Showing table contents
-SELECT * FROM TABLE `first_table`;
+SELECT * FROM `first_table`;
