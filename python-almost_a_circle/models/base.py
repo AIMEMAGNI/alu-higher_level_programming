@@ -1,15 +1,12 @@
 #!/usr/bin/python3
-"""Class Base"""
+"""The base class"""
 
+import os.path
 import json
-
+import csv
 
 class Base:
-    """"
-        Class Base
-        Attr :
-                id: number
-    """
+    """Representation of base class"""
     __nb_objects = 0
 
     def __init__(self, id=None):
@@ -18,12 +15,12 @@ class Base:
 
     @property
     def id(self):
-        """Doc"""
+        """Returning id"""
         return self.__id
 
     @id.setter
     def id(self, value):
-        """Doc"""
+        """Setting id"""
         if value is None:
             self.__id = self.__nb_objects
         else:
@@ -31,7 +28,7 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
-        """Doc"""
+        """json string"""
         if list_dictionaries is None or \
                 len(list_dictionaries) == 0:
             return "[]"
@@ -40,9 +37,7 @@ class Base:
 
     @classmethod
     def save_to_file(cls, list_objs):
-        """writes the JSON string representation
-        of list_objs to a file
-        """
+        """saving a file"""
         list_objs_dict = []
         with open(cls.__name__ + '.json', "w") as file:
             if list_objs is None or len(list_objs) == 0:
@@ -54,7 +49,7 @@ class Base:
 
     @staticmethod
     def from_json_string(json_string):
-        """returns the list of the JSON string representation json_string"""
+        """returning JSON string"""
         if json_string is None or \
                 len(json_string) == 0:
             return list()
@@ -63,7 +58,7 @@ class Base:
 
     @classmethod
     def create(cls, **dictionary):
-        """ returns an instance with all attributes already set"""
+        """ returning an instance"""
         if cls.__name__ == "Rectangle":
             dummy_instance = cls(4, 3)
         if cls.__name__ == "Square":
@@ -73,7 +68,7 @@ class Base:
 
     @classmethod
     def load_from_file(cls):
-        """returns a list of instances from file"""
+        """returning a list of instances"""
         try:
             with open(cls.__name__ + ".json", "r") as file:
                 serialized_content = file.read()
@@ -86,3 +81,106 @@ class Base:
         for instance_dict in deserialized_content:
             instances_list.append(cls.create(**instance_dict))
         return instances_list
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """ saving a CSV file """
+        filename = "{}.csv".format(cls.__name__)
+
+        if cls.__name__ == "Rectangle":
+            list_dic = [0, 0, 0, 0, 0]
+            list_keys = ['id', 'width', 'height', 'x', 'y']
+        else:
+            list_dic = ['0', '0', '0', '0']
+            list_keys = ['id', 'size', 'x', 'y']
+
+        matrix = []
+
+        if not list_objs:
+            pass
+        else:
+            for obj in list_objs:
+                for kv in range(len(list_keys)):
+                    list_dic[kv] = obj.to_dictionary()[list_keys[kv]]
+                matrix.append(list_dic[:])
+
+        with open(filename, 'w') as writeFile:
+            writer = csv.writer(writeFile)
+            writer.writerows(matrix)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """ loading a CSV file """
+        filename = "{}.csv".format(cls.__name__)
+
+        if os.path.exists(filename) is False:
+            return []
+
+        with open(filename, 'r') as readFile:
+            reader = csv.reader(readFile)
+            csv_list = list(reader)
+
+        if cls.__name__ == "Rectangle":
+            list_keys = ['id', 'width', 'height', 'x', 'y']
+        else:
+            list_keys = ['id', 'size', 'x', 'y']
+
+        matrix = []
+
+        for csv_elem in csv_list:
+            dict_csv = {}
+            for kv in enumerate(csv_elem):
+                dict_csv[list_keys[kv[0]]] = int(kv[1])
+            matrix.append(dict_csv)
+
+        list_ins = []
+
+        for index in range(len(matrix)):
+            list_ins.append(cls.create(**matrix[index]))
+
+        return list_ins
+    
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """ Draw the rectangles and squares """
+        shapes = []
+        if list_rectangles:
+            shapes.extend(list_rectangles)
+        if list_squares:
+            shapes.extend(list_squares)
+        pen = turtle.Turtle()
+        pen.pen(pencolor='black', pendown=False, pensize=2, shown=False)
+        for shape in shapes:
+            pen.penup()
+            pen.setpos(shape.x, shape.y)
+            pen.pendown()
+            pen.forward(shape.width)
+            pen.right(90)
+            pen.forward(shape.height)
+            pen.right(90)
+            pen.forward(shape.width)
+            pen.right(90)
+            pen.forward(shape.height)
+            pen.right(90)
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """ Draw the rectangles and squares """
+        shapes = []
+        if list_rectangles:
+            shapes.extend(list_rectangles)
+        if list_squares:
+            shapes.extend(list_squares)
+        pen = turtle.Turtle()
+        pen.pen(pencolor='black', pendown=False, pensize=2, shown=False)
+        for shape in shapes:
+            pen.penup()
+            pen.setpos(shape.x, shape.y)
+            pen.pendown()
+            pen.forward(shape.width)
+            pen.right(90)
+            pen.forward(shape.height)
+            pen.right(90)
+            pen.forward(shape.width)
+            pen.right(90)
+            pen.forward(shape.height)
+            pen.right(90)
