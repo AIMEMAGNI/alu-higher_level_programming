@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Test the REctangle class"""
+"""Test"""
 
 import unittest
 from io import StringIO
@@ -11,10 +11,10 @@ from models.rectangle import Rectangle
 
 
 class TestRectangle(unittest.TestCase):
-    """Test class for Base"""
+    """Test"""
 
     def test_instance(self):
-        """file documentation"""
+        """documentation"""
         Base._Base__nb_objects = 0
         rect1 = Rectangle(1, 2)
         rect2 = Rectangle(1, 2, 3)
@@ -54,12 +54,12 @@ class TestRectangle(unittest.TestCase):
             r7 = Rectangle(1, 2, 3, "4")
 
     def test_area(self):
-        """Test for the Area"""
+        """Test"""
         reactnage = Rectangle(5, 3)
         self.assertEqual(reactnage.area(), 15)
 
     def test__str__(self):
-        """Test for the string repo of the rectange"""
+        """Test"""
         Base._Base__nb_objects = 0
         rectangle = Rectangle(5, 3)
         with patch("sys.stdout", new=StringIO()) as out_rectange:
@@ -93,7 +93,7 @@ class TestRectangle(unittest.TestCase):
                          {'id': 1, 'width': 4, 'height': 2, 'x': 0, 'y': 0})
 
     def test_update(self):
-        """test for the string"""
+        """test"""
         Base._Base__nb_objects = 0
         r1 = Rectangle(4, 2)
 
@@ -151,7 +151,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r1.y, 4)
 
     def test_create(self):
-        """Tests to create a new rectangle"""
+        """Tests"""
 
         r1 = Rectangle.create(**{'id': 89})
         self.assertEqual(r1.id, 89)
@@ -180,7 +180,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r1.y, 4)
 
     def test_save_to_file(self):
-        """Test for the save to save to file"""
+        """Test """
         Base._Base__nb_objects = 0
 
         Rectangle.save_to_file(None)
@@ -200,7 +200,7 @@ class TestRectangle(unittest.TestCase):
                              '"height": 2, "x": 0, "y": 0}]')
 
     def test_save_to_file_empty(self):
-        """Test for the saving to a an empty file"""
+        """Test"""
         Rectangle.save_to_file([])
         self.assertTrue(os.path.isfile("Rectangle.json"))
         with open("Rectangle.json") as file:
@@ -208,7 +208,7 @@ class TestRectangle(unittest.TestCase):
             self.assertEqual(type(file.read()), str)
 
     def test_load_from_file(self):
-        """test geting a file form file"""
+        """test"""
         if os.path.exists("Rectangle.json"):
             os.remove("Rectangle.json")
 
