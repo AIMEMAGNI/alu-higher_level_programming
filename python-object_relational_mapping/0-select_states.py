@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # Import necessary modules
-"""module documentation"""
+"""documentation"""
 import MySQLdb
 import sys
 
@@ -28,3 +28,4 @@ if __name__ == '__main__':
     # Close cursor and database connections
     cursor.close()
     db.close()
+    
