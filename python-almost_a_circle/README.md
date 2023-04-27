@@ -1,1 +1,0 @@
-The Almost circle project
