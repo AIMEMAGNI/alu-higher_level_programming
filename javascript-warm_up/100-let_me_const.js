@@ -1,6 +1,6 @@
 #!/usr/bin/node
 
-let myVar = 40;
+//let myVar = 40;
 
 function updateMyVar() {
   myVar = 333;
