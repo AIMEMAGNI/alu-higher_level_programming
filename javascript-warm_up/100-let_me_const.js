@@ -6,5 +6,3 @@ function updateMyVar() {
   myVar = 333;
   console.log(myVar);
 }
-
-updateMyVar()
