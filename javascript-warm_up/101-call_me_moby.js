@@ -5,3 +5,9 @@ function executeXTimes(x, theFunction) {
     theFunction();
   }
 }
+
+function myFunction() {
+  console.log("Executing the function");
+}
+
+executeXTimes(5, myFunction);
