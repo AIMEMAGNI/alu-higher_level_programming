@@ -4,8 +4,7 @@ let myVar = 40;
 
 function updateMyVar() {
   myVar = 333;
+  console.log(myVar);
 }
 
-console.log(myVar);
-updateMyVar();
-console.log(myVar);
+updateMyVar()
